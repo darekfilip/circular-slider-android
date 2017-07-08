@@ -52,6 +52,7 @@ public class CircularSlider extends View {
     private boolean mIsThumbSelected = false;
 
     private Paint mPaint = new Paint();
+    private Paint mPaintThumb = new Paint();
     private SweepGradient mGradientShader;
     private OnSliderMovedListener mListener;
 
@@ -182,7 +183,7 @@ public class CircularSlider extends View {
         mCircleRadius = smallerDim / 2 - mBorderThickness / 2 - mPadding;
 
         if (mBorderGradientColors != null) {
-            mGradientShader = new SweepGradient(mCircleRadius, mCircleRadius, mBorderGradientColors, null);
+            mGradientShader = new SweepGradient(mCircleCenterX, mCircleCenterY, mBorderGradientColors, null);
         }
 
         // works well for now, should we call something else here?
@@ -213,9 +214,9 @@ public class CircularSlider extends View {
             mThumbImage.draw(canvas);
         } else {
             // draw colored circle
-            mPaint.setColor(mThumbColor);
-            mPaint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(mThumbX, mThumbY, mThumbSize, mPaint);
+            mPaintThumb.setColor(mThumbColor);
+            mPaintThumb.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(mThumbX, mThumbY, mThumbSize, mPaintThumb);
         }
     }
 
